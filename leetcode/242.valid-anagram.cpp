@@ -8,22 +8,25 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        int j=s.size();
         int count =0;
-        while(count<=j){
-        for(int i=count; i<s.size()-1; i++){
-            if(s[count]==t[i]){
-                s[count]=1;
-                t[i]=0;
-                count++;
-            }
+        int freq[26];
+
+        if (s.size() != t.size())
+            return false;
+
+        for(int i=0; i<s.size(); i++){
+            freq[s[i]-'a']++;
+            freq[t[i]-'a']--;
         }
+        int n = sizeof(freq)/sizeof(freq[0]);
+        for(int i=0; i<n; i++){
+        if (freq[i]!=0)
+        return false;
+        }
+
+        return true;
     }
-    if (count==s.size())
-    return true;
-    else
-    return false;
-}
 };
+
 // @lc code=end
 
